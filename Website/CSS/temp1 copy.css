@@ -1,0 +1,194 @@
+h1 {
+    color: red
+}
+.parent {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 8px;
+}
+
+.box {
+    min-width: 0;
+    min-height: 60px;
+    max-height: 500px;      /* Set a max height for all boxes */
+    overflow: hidden;       /* Hide overflow by default */
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+#box1 {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box2 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box3 {
+    grid-column-start: 3;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box4 {
+    grid-column-start: 4;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box5 {
+    grid-column-start: 5;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box6 {
+    grid-column-start: 6;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box7 {
+    grid-column-start: 7;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box8 {
+    grid-column-start: 8;
+    grid-row-start: 2;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box9 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 10;
+    grid-row-start: 1;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box10 {
+    grid-row-start: 2;
+    position: relative;
+    overflow: visible;   /* Allow overflow for box10 */
+    outline-color: red;
+    outline-style: solid;
+    max-width: 200px;      /* Limit max width */
+    max-height: 100px;     /* Limit max height */
+}
+
+#box11 {
+    grid-row: span 6 / span 6;
+    grid-column-start: 10;
+    grid-row-start: 3;
+    outline-color : red;
+    outline-style : solid;
+}
+
+#box12 {
+    grid-column: span 9 / span 9;
+    grid-row: span 6 / span 6;
+    grid-column-start: 1;
+    grid-row-start: 3;
+    outline-color : red;
+    outline-style : solid;
+    max-height: 650px;      /* Allow more height for box12 if needed */
+    overflow-y: auto;
+    background-image: url('../../IMG/box12bg.PNG');
+    background-size: cover;
+    background-position: center;
+}
+
+.student-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+}
+/* Dropdown Button */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 70px;
+    margin-top: 45px;
+}
+.dropdown button{
+    background-color: #a536bb; 
+    color: rgb(255, 255, 255);            
+    padding: 5px 30px;        
+    font-size: 16px;          
+    border: none;             
+    cursor: pointer;          
+    border-radius: 5px;        
+    position: relative;        
+    z-index: 1;        
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 40));        
+}
+.dropdown-content {
+    margin-right: 80px;
+    margin-bottom: 20px;
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;        /* Rounded corners */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+.dropdown-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd; /* Add a border between items */
+}
+.dropdown-content a:hover {
+    background-color: #a536bb; /* Add a grey background on hover */
+    color: white;              /* Change text color on hover */
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+    max-height: 500px; /* Large enough for all options */
+    opacity: 1;
+    transition: max-height 1.5s ease, opacity 0.5s ease;
+}
+
+
+@media (max-width: 600px) {
+    .parent {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+        grid-template-rows: repeat(6, 1fr);    /* fewer rows if needed */
+        gap: 4px; /* smaller gap */
+    }
+    .box {
+        font-size: 1.2rem; /* adjust text size for mobile */
+        min-width: 0;
+        min-height: 40px;
+    }
+    /* Optionally override individual box positions for mobile */
+    #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9, #box10, #box11, #box12 {
+        grid-column-start: auto;
+        grid-row-start: auto;
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+        
