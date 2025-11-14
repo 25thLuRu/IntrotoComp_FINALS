@@ -10,162 +10,123 @@
 
 <body>
 
-|<header>
-    <img id="feur"  src="../IMG/FEU_Roosevelt_Logo.png">
-      <h1 id="bsit">BSIT1-2</h1>
+<header>
+    <img id="feur" src="../IMG/FEU_Roosevelt_Logo.png">
+    <h1 id="bsit">BSIT1-2</h1>
 </header>
 
-    <div class="cards-container">
+<div class="cards-container">
 
-
-        <div class="card" data-student="baldago">
-            <div class="wrapper">
-                <img src="../IMG/baldago.jpg" class="cover-img">
-            </div>
-            <img src="../IMG/Baldago_Card.png" class="title">
-            <img src="../IMG/baldago_alone.png" class="character">
-  
+    <div class="card" data-student="baldago">
+        <div class="wrapper">
+            <img src="../IMG/baldago.jpg" class="cover-img">
         </div>
+        <img src="../IMG/Baldago_Card.png" class="title">
+        <img src="../IMG/baldago_alone.png" class="character">
+    </div>
 
-        <div class="card" data-student="bads">
-            <div class="wrapper">
-                <img src="../IMG/bads.jpg" class="cover-img">
-            </div>
-            <img src="../IMG/Bads_Card.png" class="title">
-            <img src="../IMG/bads_alone.png" class="character">
-
+    <div class="card" data-student="bads">
+        <div class="wrapper">
+            <img src="../IMG/bads.jpg" class="cover-img">
         </div>
+        <img src="../IMG/Bads_Card.png" class="title">
+        <img src="../IMG/bads_alone.png" class="character">
+    </div>
 
-
-
-        <div class="card " data-student="briones">
-            <div class="wrapper">
-                <img src="../IMG/briones.jpg" class="cover-img">
-            </div>
-            <img src="../IMG/Briones_Card.png" class="title">
-            <img src="../IMG/briones_alone.png" class="character">
-
+    <div class="card" data-student="briones">
+        <div class="wrapper">
+            <img src="../IMG/briones.jpg" class="cover-img">
         </div>
+        <img src="../IMG/Briones_Card.png" class="title">
+        <img src="../IMG/briones_alone.png" class="character">
+    </div>
 
-
-        <div class="card" data-student="sison">
-
-            <div class="wrapper">
-                <img src="../IMG/sison.jpg" class="cover-img" id="sison">
-            </div>
-            <img src="../IMG/Sison_Card.png" class="title">
-            <img src="../IMG/sison_alone.png" class="character">
-
+    <div class="card" data-student="sison">
+        <div class="wrapper">
+            <img src="../IMG/sison.jpg" class="cover-img">
         </div>
-
+        <img src="../IMG/Sison_Card.png" class="title">
+        <img src="../IMG/sison_alone.png" class="character">
     </div>
 
-    </div>
+</div>
 
+<h1 id="CYSTUDENTS">CHOOSE YOUR STUDENT!</h1>
+<button id="confirmBtn" class="hide">Confirm</button>
 
+<div class="clouds1 cloud">
+    <img src="../IMG/clouds-removebg-preview.png" id="cloud1">
+</div>
 
-    </div>
+<div class="clouds2 cloud">
+    <img src="../IMG/clouds-removebg-preview.png" id="cloud2">
+</div>
 
+<div class="clouds3 cloud">
+    <img src="../IMG/clouds big.png" id="cloud3">
+</div>
 
-    <h1 id="CYSTUDENTS">CHOOSE YOUR STUDENT!</h1>
-    <button id="confirmBtn" class="hide">Confirm</button>
+<div class="clouds3-1 cloud">
+    <img src="../IMG/clouds bigreverse.png" id="cloud3-1">
+</div>
 
+<div class="clouds4 cloud">
+    <img src="../IMG/clouds big.png" id="cloud4">
+</div>
 
-   <div class="clouds1 cloud">
+<div class="clouds4-1 cloud">
+    <img src="../IMG/clouds bigreverse.png" id="cloud5">
+</div>
 
-        <img src="../IMG/clouds-removebg-preview.png" id="cloud1">
+<div class="clouds5 cloud">
+    <img src="../IMG/cloud desing 4.png" id="cloud6">
+</div>
 
+<div class="clouds6 cloud">
+    <img src="../IMG/clouds bigreverse.png" id="cloudscar">
+</div>
 
-    </div>
+<script src="../JS/nightmode.js" defer></script>
 
-
-    <div class="clouds2 cloud">
-        <img src="../IMG/clouds-removebg-preview.png" id="cloud2">
-
-
-    </div>
-
-
-    <div class="clouds3 cloud">
-        <img src="../IMG/clouds big.png" id="cloud3">
-
-    </div>
-
-    <div class="clouds3-1 cloud">
-        <img src="../IMG/clouds bigreverse.png" id="cloud3-1">
-    </div>
-
-    <div class="clouds4 cloud">
-        <img src="../IMG/clouds big.png" id="cloud4">
-    </div>
-
-
-    <div class="clouds4-1 cloud">
-        <img src="../IMG/clouds bigreverse.png" id="cloud5">
-    </div>
-
-
-    <div class="clouds5 cloud">
-        <img src="../IMG/cloud desing 4.png" id="cloud6">
-    </div>
-
-
-    <div class="clouds6 cloud">
-        <img src="../IMG/clouds bigreverse.png" id="cloudscar">
-    </div>
-
-    <div class="loader">
-      
-    </div> 
-
-
-    <script src="../JS/nightmode.js" defer></script>
-    <script>
-
-
-
-
-
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.card').forEach((card, i) => {
-                card.style.animationDelay = `${i * 0.50}s`;
-
-            });
-
-
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.card').forEach((card, i) => {
+            card.style.animationDelay = `${i * 0.50}s`;
         });
-        let selectedValue = "";
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', function () {
-                document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
-                this.classList.add('selected');
-                selectedValue = this.dataset.student;
-                document.getElementById('confirmBtn').classList.remove('hide');
-                document.body.classList.remove('baldago-bg', 'briones-bg', 'sison-bg', 'bads-bg');
+    });
 
-                // Add the new background class based on data-student
-                const student = this.getAttribute('data-student');
-                if (student) {
-                    document.body.classList.add(`${student}-bg`);
-                    selectedValue = student; 
-                }
-            });
-        });
+    let selectedValue = "";
 
-        document.getElementById('confirmBtn').onclick = function () {
-            if (selectedValue) {
-                const studentPageMap = {
-                    'baldago': 'Baldago_sub.html',
-                    'briones': 'Briones_sub.html',
-                    'sison': 'Sison_sub.html',
-                    'bads': 'Bads_sub.html'
-                };
-                window.location.href = studentPageMap[selectedValue];
-            } else {
-                alert('Please Select the following Students.');
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', function () {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            this.classList.add('selected');
+            selectedValue = this.dataset.student;
+            document.getElementById('confirmBtn').classList.remove('hide');
+            document.body.classList.remove('baldago-bg', 'briones-bg', 'sison-bg', 'bads-bg');
+
+            const student = this.getAttribute('data-student');
+            if (student) {
+                document.body.classList.add(`${student}-bg`);
+                selectedValue = student;
             }
-        };
-    </script>
+        });
+    });
+
+    document.getElementById('confirmBtn').onclick = function () {
+        if (selectedValue) {
+            const studentPageMap = {
+                'baldago': 'Baldago_sub.html',
+                'briones': 'Briones_sub.html',
+                'sison': 'Sison_sub.html',
+                'bads': 'Bads_sub.html'
+            };
+            window.location.href = studentPageMap[selectedValue];
+        } else {
+            alert('Please Select the following Students.');
+        }
+    };
+</script>
 
 </body>
-
+</html>
