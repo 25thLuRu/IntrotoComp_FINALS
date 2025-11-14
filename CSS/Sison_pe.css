@@ -1,0 +1,40 @@
+
+body{
+  background-color: #FFA239;
+}
+
+
+.event1 , .event2{
+  transform: translateY(100px);
+}
+.event1 img , .event2 img{
+  height: 250px;
+
+}
+
+#EventsH1{
+transform: translateX(180px);
+}
+
+@media(max-width: 600px){
+
+.image-containers{
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#EventsH1, #EventsH2{
+position: relative;
+left:50px;
+}
+
+
+.event1 img , .event2 img{
+  height: 500px;
+
+}
+
+.event1{
+  grid-column: 2/3;
+}
+
+}
