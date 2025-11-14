@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEURmoris - Student Magazine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: monospace, 'Segoe UI', sans-serif;
+            background: #0f0f1e;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        
+        .background-hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../IMG/BG.png);  
+            background-size: cover;       
+            background-position: center;  
+            background-repeat: no-repeat; 
+            background-color: #0f0f1e;    
+            opacity: 0.6;                 
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding: 80px 100px;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .left-section {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .title {
+            font-size: 84px;
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 50px;
+            font-style: italic;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0;
+            position: relative;
+            height: 600px;
+        }
+
+        
+        .polaroid {
+            background: white;
+            padding: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            position: absolute;
+        }
+
+        .polaroid-img {
+            width: 100%;
+            display: block;
+            background: #f0f0f0;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        .polaroid-label {
+            height: 60px;
+            background: white;
+        }
+
+        .polaroid-top {
+            width: 360px;
+            top: 0;
+            right: 0;
+            transform: perspective(1200px) rotateY(-12deg) rotateX(3deg) rotateZ(8deg);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .polaroid-top:hover {
+            transform: perspective(1200px) rotateY(-8deg) rotateX(2deg) rotateZ(4deg);
+        }
+
+        .polaroid-bottom {
+            width: 280px;
+            bottom: 0;
+            left: 0;
+            transform: perspective(1200px) rotateY(15deg) rotateX(-2deg) rotateZ(-12deg);
+            transition: transform 0.4s ease;
+            z-index: 1;
+        }
+
+        .polaroid-bottom:hover {
+            transform: perspective(1200px) rotateY(10deg) rotateX(-1deg) rotateZ(-8deg);
+        }
+
+        .quote-section {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            text-align: right;
+            max-width: 380px;
+        }
+
+        .quote-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #999;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        
+        .content-wrapper {
+            background: linear-gradient(180deg, #0f0f1e 0%, #1a1a1a 50%, #1a1a1a 100%);
+            position: relative;
+            z-index: 1;
+            padding-top: 60px;
+        }
+
+        .content-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(../IMG/BackgroundMorris2.png);
+            background-size: cover;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .header-title {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin-bottom: 120px;
+        }
+
+        .content-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .content-row:nth-child(even) {
+            direction: rtl;
+        }
+
+        .content-row:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .film-strip {
+            background: white;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transform: perspective(1000px) rotateY(-8deg) rotateZ(4deg);
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 16/10;
+            margin: 0 auto;
+        }
+
+        .film-strip img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .text-block {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d0d0d0;
+            font-weight: 300;
+        }
+
+        .text-block strong {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .marketing-section {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .marketing-header {
+            background: radial-gradient(circle at -20% 50%, rgba(200, 50, 150, 0.1) 0%, transparent 50%), 
+                        linear-gradient(135deg, #222 0%, #1a1a1a 100%);
+            border-radius: 30px 30px 0 0;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .marketing-content {
+            background: #ffffff;
+            border-radius: 0 0 30px 30px;
+            padding: 60px 40px;
+            text-align: left;
+        }
+
+        .marketing-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: radial-gradient(circle, #ff6b9d 0%, #c8329f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .marketing-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .marketing-subtitle {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        .marketing-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #333;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .marketing-text p {
+            margin-bottom: 20px;
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: #333;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: 2px solid #333;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .link-button:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+        button{
+    border-radius: 5px;
+    filter: drop-shadow(10px 10px 10px #333);
+    padding: 15px;
+    cursor: pointer;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.header {
+  position: fixed;
+  top: -1100px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  transition: all 3s;
+  filter: blur(100px);
+}
+
+.homePic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.show {
+  top: 0px;
+  filter: blur(0px);
+}
+
+.btnCLick {
+  z-index: 11;
+  position: absolute;
+  top: 30px;
+  left: 100px;
+  transition: all 3s;
+}
+
+.opacity {
+  opacity: 0;
+  left: -500px;
+}
+
+#btnClose {
+  position: absolute;
+  top: 30px;
+  left: -600px;
+}
+
+.navdiv {
+  color: white;
+  position: absolute;
+  top: 50px;
+  left: 650px;
+  transition: all 3s;
+  text-align: center;
+  justify-content: center;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+
+ul .list {
+  margin: 20px;
+  list-style: none;
+  display: inline-block;
+  padding: 10px;
+  opacity: 0;
+  position: relative;
+  font-size: 50px;
+  top: 300px;
+  right: 30%;
+  transition: all 1s;
+  pointer-events: none;
+}
+
+.showList{
+   animation: fadeIn 2s ease-in forwards;
+   
+}
+
+ul li:nth-child(1) {
+  animation-delay: 3s;
+}
+ul li:nth-child(2) {
+  animation-delay: 3.3s;
+}
+ul li:nth-child(3) {
+  animation-delay: 3.6s;
+}
+ul li:nth-child(4) {
+  animation-delay: 3.9s;
+}
+ul li:nth-child(5) {
+  animation-delay: 4.2s;
+}
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+ul:hover > :not(:hover) {
+  filter: blur(20px);
+  font-size: 40px;
+  padding:20px;
+}
+
+        @media (max-width: 1200px) {
+            .hero-section {
+                flex-direction: column;
+                padding: 60px 40px;
+                align-items: center;
+            }
+
+            .left-section {
+                text-align: center;
+                margin-bottom: 40px;
+                width: 100%;
+            }
+
+            .right-section {
+                align-items: center;
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .title {
+                font-size: 56px;
+            }
+
+            .polaroid-top,
+            .polaroid-bottom {
+                position: relative;
+                top: auto;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                transform: none !important;
+            }
+
+            .polaroid-top:hover,
+            .polaroid-bottom:hover {
+                transform: scale(1.02) !important;
+            }
+
+            .polaroid {
+                width: 100% !important;
+                max-width: 300px;
+            }
+
+            .quote-section {
+                text-align: center;
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 20px;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+                min-height: auto;
+            }
+
+            .header-title {
+                font-size: 36px;
+                margin-bottom: 5px;
+            }
+
+            .header-subtitle {
+                font-size: 12px;
+            }
+
+            .content-row {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .content-row:nth-child(even) {
+                direction: ltr;
+            }
+
+            .film-strip {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .text-column {
+                gap: 15px;
+            }
+
+            .text-block {
+                font-size: 14px;
+            }
+
+            .marketing-text {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .marketing-section {
+                flex-direction: column;
+            }
+
+            .marketing-header {
+                border-radius: 20px 20px 0 0;
+                padding: 40px 20px;
+            }
+
+            .marketing-content {
+                border-radius: 0 0 20px 20px;
+                padding: 30px 20px;
+            }
+
+            .marketing-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+
+            .marketing-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+      <image class="homePic" id="homePic" src="../IMG/home.png" alt="headerBG"></image>
+      <nav>
+        <div class="navdiv appear">
+          <ul>
+            <li class="list "><a href="../MORIS/feurmoris.html"> HOME </a></li>
+            <li class="list "><a href="../MORIS/Moris3-4.html"> ABOUT </a></li>
+            <li class="list "><a href="../MORIS/article_select.html"> ARTICLES </a></li>
+            <li class="list "><a href="../MORIS/Contact_sponsor.html"> CONTACTS </a></li>
+            <li class="list "><a href="../MORIS/Contact_sponsor.html"> PARTNERSHIPS </a></li>
+          </ul>
+          <button class="btnClose" id="btnClose">exit</button>
+        </div>
+      </nav>
+    </header>
+
+    <button class="btnCLick" id="btnClick">click me</button>
+    <div class="background-hero"></div>
+
+    <div class="main-content">
+        
+        <div class="hero-section">
+            <div class="left-section">
+                <h1 class="title">HELLO, TAMARAWS!</h1>
+                <p class="description">
+                    FEURmoris is a student-driven magazine of FEU Roosevelt, celebrating the Tamaraw spirit through stories of creativity, unity, and growth.
+                </p>
+            </div>
+
+            <div class="right-section">
+                <div class="polaroid polaroid-top">
+                    <img src="../IMG/PolaroidTop.png" alt="FEU Roosevelt students" class="polaroid-img">
+                    <div class="polaroid-label"></div>
+                </div>
+
+                <div class="polaroid polaroid-bottom">
+                    <img src="../IMG/PolaroidBottom.png" alt="FEU Roosevelt team" class="polaroid-img">
+                    <div class="polaroid-label"></div>
+                </div>
+
+                <div class="quote-section">
+                    <p class="quote-text">
+                        This magazine isn't just about words and images, it's about us, our growth, and the spirit that unites us as Tamaraws.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="content-wrapper">
+            <div class="content-background"></div>
+            <div class="container">
+                <div class="header">
+                    <h1 class="header-title">TAKING THE NEXT CHAPTER</h1>
+                    <p class="header-subtitle">THE TRANSITIONS THAT DEFINE US</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="content-row">
+                        <div class="film-strip">
+                            <img src="../IMG/M1.png" alt="FEU Roosevelt students">
+                        </div>
+                        <div class="text-column">
+                            <p class="text-block">
+                                Every Tamaraw's story at FEU Roosevelt is a journey of transformation — where ambition meets opportunity and uncertainty to purpose. This feature follows seven Tamaraws, each with their own story of growth, resilience, and discovery.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="content-row">
+                        <div class="film-strip">
+                            <img src="../IMG/M2.png" alt="FEU Roosevelt team">
+                        </div>
+                        <div class="text-column">
+                            <p class="text-block">
+                                <strong>Through friendships, shared challenges, and mentors who believed in them, they learned that transition isn't just about change — it's about becoming. Together, they embody the spirit of FEU that growth happens not alone, but side by side.</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="content-row">
+                        <div class="film-strip">
+                            <img src="../IMG/M3.png" alt="FEU Roosevelt community">
+                        </div>
+                        <div class="text-column">
+                            <p class="text-block">
+                                At FEU Roosevelt, every chapter ends with a new beginning and every Tamaraw carries forward the legacy of courage, connection, and transformation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="marketing-section">
+                    <div class="marketing-header">
+                        <div class="marketing-icon">◉</div>
+                        <h2 class="marketing-title">THE REBIRTH OF MARKETING</h2>
+                        <p class="marketing-subtitle">"Taking the Next Chapter the Tamaraw Way"</p>
+                    </div>
+                    <div class="marketing-content">
+                        <div class="marketing-text">
+                            <p>Before the pandemic, marketing thrived in the energy of face-to-face events, mall activations, and personal connections. Then 2020 arrived — and everything adapted. Digital screens became the new platforms, and algorithms replaced foot traffic.</p>
+                            <p>From livestreams to hashtags, marketing found a new way to connect — one built on resilience, creativity, and community. Just like the Tamaraws, who turned their struggles into strength, their innovation into innovation.</p>
+                            <p>This is more than a story about marketing's evolution — it's about how the Tamaraw spirit has always known what it means to adapt, inspire, and create in times of change.</p>
+                            <p style="grid-column: 1 / -1; text-align: center;">
+                                <a href="https://www.instagram.com/feurmoris/?igsh" class="link-button">
+                                    <span>🔗</span> Link
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/feurmoris.js"></script>
+</body>
+</html>
+`;
